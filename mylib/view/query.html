@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自然语言匹配</title>
+    <script src="<?=STATIC_DIR;?>js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<input id="query" type="text">
+<input type="button" value="submit" onclick="add()">
+<br />
+<br />
+<table border=1 id="list">
+    <th>sentence</th>
+</table>
+</table>
+</body>
+<script>
+$.ajax({
+    url: '<?=API;?>allquery',
+    type: 'get',
+    success: function(data){
+        var arr = JSON.parse(data);
+        for(var i of arr)
+            $('#list').append('<tr><td>'+i.sentence+'</td></tr>');
+    }
+});
+
+    function add()
+    {
+        $.ajax({
+            url: '<?=API;?>addquery',
+            type:'get',
+            data: {
+                sts: $('#query').val()
+            },
+            success: function(data){
+                alert(data);
+            }
+        })
+    }
+</script>
+</html>

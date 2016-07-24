@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="<?=STATIC_DIR;?>css/font-awesome.css">
+    <title>山东大学图书馆</title>
+    <link href="<?=STATIC_DIR;?>css.css" type="text/css" rel="stylesheet">
+    <script src="<?=STATIC_DIR;?>js.js" type="text/javascript" ></script>
+    <script src="<?=STATIC_DIR;?>js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<div class="bar"></div>
+<div class="main">
+<div class="nav">
+    <div class="nav_left">
+        <img src="<?=STATIC_DIR;?>images/logo.png" alt="山大校徽">
+    </div>
+    <div class="nav_middle">
+        <div class="nav_middle_top"><p>山东大学</p></div>
+        <div class="nav_middle_bottom"><p>图书馆</p></div>
+    </div>
+    <div class="nav_right">
+        <ul>
+            <li><a href="http://www.sdu.edu.cn/">山大主页</a></li>
+            <li><a href="#">读者心得</a></li>
+            <li onmouseover="showsubmenu(this)" onmouseout="hidesubmenu(this)"><a href="#">通知公告</a>
+                <ul>
+                    <li><a href="#">学生通知</a> </li>
+                    <li><a href="#">教职工通知</a> </li>
+                </ul>
+            </li>
+            <li onmouseover="showsubmenu(this)" onmouseout="hidesubmenu(this)"><a href="#">特色活动</a>
+                <ul>
+                    <li><a href="#">欢迎来稿</a> </li>
+                    <li><a href="#">勤工助学</a> </li>
+                </ul>
+            </li>
+            <li onmouseover="showsubmenu(this)" onmouseout="hidesubmenu(this)"><a href="#">新闻动态</a>
+                <ul>
+                    <li><a href="#">学生活动</a> </li>
+                    <li><a href="#">学校活动</a> </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div><!--导航栏nav结束-->
+    <div class="neg">
+        <div class="neg_img"><img src="<?=STATIC_DIR;?>images/neg.jpg" alt="背景图"></div>
+    </div><!--neg结束-->
+    <!--<div class="top">-->
+        <!--<div class="top_left">-->
+           <!--<i class="top_left_icon icon-search"  id="btnSearch_icon"></i>-->
+            <!--<form action="#"  method="post">-->
+                <!--<input type="text" id="sts" class="search_text" />-->
+            <!--</form>-->
+        <!--</div>-->
+        <!--<div class="top_right" id="btnSearch"><p>搜&nbsp索</p></div>-->
+    <!--</div>-->
+    <div class="bottom">
+        <img src="<?=STATIC_DIR;?>images/bottom.jpg">
+        <div class="bottom_total">
+            <h1>馆情介绍</h1><p>山东大学图书馆前身是始建于1901年的山东大学堂藏书楼，是我国较早的近代新型图书馆之一。在其发展过程中，许多著名学者、图书馆学专家，如皮高品、梁实秋、陆侃如、吴富恒、孙昌熙等曾主持过图书馆工作。建国后，山东大学图书馆一直是国家教育部直属的全国重点综合性大学图书馆，该馆历史悠久，馆藏丰富。</p>
+        </div>
+        <div class="bottom_right">
+            <div class="bottom_right01">
+                <div class="right011"><a href="<?=ROOT_DIR;?>login"><h1>读&nbsp者&nbsp登&nbsp陆</h1></a></div>
+                <div class="right012"><a href="<?=ROOT_DIR;?>books"><i class="book_one icon-book"><p>馆藏图书</p></i>
+                </a>
+                </div>
+                <div class="right013"></div>
+                <div class="right014"></div>
+            </div>
+            <div class="bottom_right02">
+                <div class="right021">
+                    <i class="orig icon-globe"><p>专业资源库</p></i>
+                </div>
+                <div class="right022">
+                    <i class="spe icon-leaf"><p>特色资源</p></i>
+                </div>
+                <div class="right023">
+                    <p>优秀著作选读</p>
+                </div>
+                <div class="right024">
+                    <i class="grd icon-compass"><p>新生指南</p></i>
+                </div>
+                <div class="right025"></div>
+            </div>
+            <div class="bottom_right03">
+                <div class="right031"></div>
+                <div class="right032"><p>欢迎投稿</p></div>
+                <div class="right033">
+                    <i class="share icon-shopping-cart"><p>我要荐购</p></i>
+                </div>
+                <div class="right034"><a href="<?=ROOT_DIR;?>admin/login"><p>管理员登陆</p></a> </div>
+                <div class="right035"></div>
+            </div>
+        </div>
+    </div>
+</div><!--main结束-->
+<div class="last">
+    <p>欢&nbsp迎&nbsp来&nbsp到&nbsp山&nbsp东&nbsp大&nbsp学&nbsp图&nbsp书&nbsp馆</p>
+</div>
+<div id="layer">
+    <div class="demo">
+        <p>已省略馆藏为0的书籍和不可借阅的书籍</p>
+        <div class="demo_main">
+            <table class="demo_ta" id="query_list">
+
+            </table>
+        </div>
+    </div>
+    <div id="dell">
+        <img src="<?=STATIC_DIR;?>images/close.png">
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

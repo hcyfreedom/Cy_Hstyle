@@ -1,0 +1,244 @@
+*
+{
+    margin:0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 微软雅黑;
+}
+
+body
+{
+    /*background-color: #ff8e57;*/
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+}
+.bar
+{
+    width: 100%;
+    height: 50px;
+    background-color:black;
+    opacity: 0.7;
+}
+.main
+{
+    margin: 0 15% 0 15%;
+    /*background-color: aqua;*/
+    height: auto;
+}
+.nav
+{
+    width: 100%;
+    height: 80px;
+    /*background-color: blueviolet;*/
+
+}
+.nav_left
+{
+    width:80px;
+    height: 80px;
+    background-color: #e7e7e7;
+    position: absolute;
+}
+.nav_left img
+{
+    width: 80px;
+    height: 80px;
+}
+.nav_middle
+{
+    width: 110px;
+    height: 80px;
+    /*background-color: aqua;*/
+    float: left;
+    margin-left: 80px;
+}
+.nav_middle_top,.nav_middle_bottom
+{
+    width: 110px;
+    height: 40px;
+    /*background-color: brown;*/
+    line-height: 40px;
+}
+.nav_middle_top p
+{
+    color:#009380;
+    font-family: "微软雅黑";
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+
+}
+.nav_middle_bottom p
+{
+    color:#009380;
+    font-family: "微软雅黑";
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    /*font-style: oblique;*/
+}
+
+.nav_right
+{
+    width: 79%;
+    height: 80px;
+    margin-left: 200px;
+    text-align: center;
+    /*padding-top: 40px;*/
+    background-color: #009380;
+}
+.nav_right p
+{
+    font-size: 40px;
+    font-family: 微软雅黑;
+    color: #ffffff;
+    line-height: 80px;
+    text-align: center;
+}
+.last
+{
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    opacity: 0.7;
+    margin-top: 135px;
+}
+.last p
+{
+    text-align: center;
+    line-height: 100px;
+    font-size: 30px;
+    color: #ffffff;
+    font-style: oblique;
+}
+.loadBox
+{
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 458px;
+    height: 400px;
+    /*background-color: #00b3ee;*/
+    border:#009380 solid 1px;
+}
+.loadBox li
+{
+    list-style-type: none;
+}
+.load_cont
+{
+    padding: 15px 40px;
+}
+
+.l_tit
+{
+    color: #009380;
+    font-family: 微软雅黑;
+    font-size: 20px;
+    line-height: 20px;
+}
+.load_input
+{
+    border: #009380 solid 2px;
+    height: 32px;
+    line-height: 32px\9;
+  tab-index: 5px;
+    width: 90%;
+}
+/*.tit_icon*/
+/*{*/
+    /*display: inline-block;*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*!*float: right;*!*/
+    /*color: #ffffff;*/
+    /*font-size: 25px;*/
+    /*margin-top: 20px;*/
+    /*margin-left: 300px;*/
+    /*text-align: center;*/
+/*}*/
+.mb_10
+{
+    margin-bottom:10px;
+    margin-top: 10px;
+}
+.load_auto
+{
+    padding-top: 0px;
+    padding-bottom: 28px;
+}
+/*.checked*/
+/*{*/
+    /*position: relative;*/
+    /*top: 3px;*/
+    /*margin-right: 3px;*/
+    /*margin-top: 30px;*/
+/*}*/
+/*.load_btn*/
+/*{*/
+    /*width: 200px;*/
+    /*height: 40px;*/
+    /*!*background-color: #009380;*!*/
+    /*!*display: none;*!*/
+    /*background: url("images/load.jpg") no-repeat ;*/
+    /*background-size: cover;*/
+    /*position: absolute;*/
+    /*border: #009380 solid 1px;*/
+    /*margin-top: -10px;*/
+    /*margin-left: 20px;*/
+/*}*/
+
+input.button_blue:hover
+{
+    background:#009380;
+    border-bottom:3px solid #009380;*border-bottom:none;
+    color:#fff;
+    text-decoration:none;
+}
+
+.fa
+{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    float: right;
+    color: #009380;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.button_blue
+{
+    display:inline-block;
+    float:left;
+    height:41px;border-radius:4px;
+    background:#009380;border:none;cursor:pointer;
+    border-bottom:3px solid #1eb376;*border-bottom:none;
+    color:#fff;
+    font-size:16px;padding:0 10px;*width:140px;
+    text-align:center;outline:none;font-family: "Microsoft Yahei",Arial, Helvetica, sans-serif;
+    margin-top:-25px;
+    margin-left: 40px;
+}
+.or_reg
+{
+    width: 100px;
+    height: 40px;
+    border: #009380 solid 1px;
+    background-color: #e7e7e7;
+    margin-top: 30px;
+    margin-left: 62px;
+}
+.or_reg p
+{
+    font-family: 微软雅黑;
+    font-size: 20px;
+    color: #009380;
+    text-align: center;
+    line-height: 40px;
+}
+.or_reg a:link,.or_reg a:visited
+{
+    text-decoration: none;
+
+}

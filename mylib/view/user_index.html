@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="<?=STATIC_DIR;?>css/font-awesome.css">
+    <title>用户主页</title>
+    <link href="<?=STATIC_DIR;?>user_index.css" type="text/css" rel="stylesheet">
+    <script src="<?=STATIC_DIR;?>js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<div class="bar"></div>
+<div class="main">
+    <div class="nav">
+        <div class="nav_left">
+            <img src="<?=STATIC_DIR;?>images/logo.png" alt="山大校徽">
+        </div>
+        <div class="nav_middle">
+            <div class="nav_middle_top"><p>山东大学</p></div>
+            <div class="nav_middle_bottom"><p>图书馆</p></div>
+        </div>
+        <div class="nav_right">
+            <p>我&nbsp的&nbsp图&nbsp书&nbsp馆</p>
+            <div class="bbb">
+                <a href="http://localhost/mylib/books"><i class="icon  icon-tags">馆藏图书主页</i></a>
+            </div>
+            <div class="nav_ano">
+                <p id="welcome">欢迎您</p>
+            </div>
+        </div>
+    </div><!--导航栏nav结束-->
+    <div class="top">
+        <div class="top_left">
+            <i id="btn_sea" class="top_left_icon icon-search"></i>
+            <form action="#"  method="post">
+                <input type="text" class="search_text" id="keyword" >
+            </form>
+        </div>
+        <input type="radio" name="searchby" value="id" checked/>按ID搜索
+        <input type="radio" name="searchby" value="name" checked/>按书名搜索
+        <input type="radio" name="searchby" value="type" />按类型搜索
+        <div class="top_right" id="btn_se"><p >搜&nbsp索</p></div>
+    </div>
+    <div class="another">
+        <table class="ta_ano" id="book_list">
+
+
+        </table>
+    </div>
+    个人资料:
+    </br />
+    密码:
+    <input type="password" id="pro_pass" />
+    性别:
+    <input type="text" id="pro_gender" />
+    <input type="button" value="修改" onclick="modify_profile()"/>
+        <div style="padding-left:30px;margin-top:50px;"><input type="submit" value="全部缴费" style="width:150px;" class="btn_ano" onclick="pay() "/></div>
+<div id="layer">
+    <div class="demo">
+        <p>已省略馆藏为0的书籍和不可借阅的书籍</p>
+        <div class="demo_main">
+        <table class="demo_ta" id="query_list">
+
+        </table>
+            </div>
+    </div>
+    <div id="dell">
+        <img src="<?=STATIC_DIR;?>images/close.png">
+    </div>
+</div>
+    <div class="last">
+        <p>欢&nbsp迎&nbsp来&nbsp到&nbsp山&nbsp东&nbsp大&nbsp学&nbsp图&nbsp书&nbsp馆</p>
+    </div>
+</div>
+    <script src="<?=STATIC_DIR;?>user_index.js" type="text/javascript"></script>
+</body>
+<script>
+    var refund = <?=$_SESSION['pay'];?>;
+    init();
+    function init() {
+        $.ajax({
+            url: '<?=API;?>user',
+            success: function (data) {
+                var profile = JSON.parse(data);
+                $('#welcome').html('欢迎您， ' + profile.username);
+                $('#pro_pass').val(profile.password);
+                $('#pro_gender').val(profile.gender);
+            }
+        });
+        $.ajax({
+            url: '<?=API;?>user/booklist',
+            success: function (data) {
+                $('#book_list').html('<tr><th>已借</th><th>借书日期</th><th>应还/归还日期</th><th>借阅状态</th><!--已还、欠费、当前借阅--></tr>');
+                var arr = JSON.parse(data);
+                for (var i = 0; i < arr.length; i++) {
+                    var status = arr[i].status;
+                    if(status == '已借')
+                        status += '&nbsp<a href="#" onclick="return_book(' + arr[i].id + ')">我要还书</a>'
+                    if(status == '超期' && refund == true)
+                        status += '&nbsp<a href="#" onclick="return_book(' + arr[i].id + ')">我要还书</a>'
+                    $('#book_list').append("<tr><td align='center'>" + arr[i].name + "</td><td align='center'>" + arr[i].loan_date + "</td><td align='center'>" + arr[i].end_date + "</td><td align='center'>" + status + "</td></tr>");
+                }
+            }
+        });
+    }
+
+    var oBtn=document.getElementById("btn_se");
+    oBtn.onclick=function(){
+        openNewM();
+    }
+    var oBtna=document.getElementById("btn_sea");
+    oBtna.onclick=function(){
+        openNewM();
+    }
+
+    function search(){
+        $.ajax({
+            url: '<?=API;?>natural',
+            data: {
+                searchby: $('input:radio[name=searchby]:checked').val(),
+                sts: $('#keyword').val()
+            },
+            success: function(data){
+                var arr = JSON.parse(data);
+                $('#query_list').html('<tr><td align="center">书名</td><td align="center">类别</td><td align="center">立即借阅</td></tr>');
+                for(var i = 0; i < arr.length; i++)
+                {
+                    $('#query_list').append("<tr><td align='center'>"+arr[i].name+"</td><td align='center'>"+arr[i].type+"</td><td align='center'><a href='#' onclick='borrow("+arr[i].id+")'>借阅</a></td></tr>")
+                }
+                $('#query_list').append('共'+arr.length+"条记录");
+            }
+        });
+    }
+
+    function pay()
+    {
+        $.ajax({
+            url: '<?=API;?>pay',
+            success: function(data){
+                if(data == 0)
+                    alert('缴费成功！');
+            }
+        });
+        refund=true;
+        init()
+    }
+
+    function borrow(id){
+        $.ajax({
+            url: '<?=API;?>loan',
+            type: 'POST',
+            data: {
+                book_id: id
+            },
+            success: function(data){
+                if(data == 0){
+                    alert("成功");
+                    init();
+                }else{
+                    alert(data);
+                }
+
+            }
+        });
+    }
+
+    function return_book(id)
+    {
+        $.ajax({
+            url: '<?=API;?>return',
+            type: 'POST',
+            data: {
+                loan_id: id
+            },
+            success: function(data){
+                if(data == 0) {
+                    alert('还书成功');
+                    init();
+                }else{
+                    alert('还书失败');
+                }
+            }
+        });
+    }
+
+    function modify_profile()
+    {
+        $.ajax({
+            url: '<?=API;?>user/profile',
+            type: 'POST',
+            data: {
+                gender: $('#pro_gender').val(),
+                password: $('#pro_pass').val()
+            },
+            success: function(data){
+                if(data == 1){
+                    alert('修改成功');
+                }else{
+                    alert('无变化');
+                }
+            }
+        });
+    }
+
+</script>
+</html>

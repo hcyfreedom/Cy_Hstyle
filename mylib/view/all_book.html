@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>馆藏图书</title>
+    <link href="<?=STATIC_DIR;?>book_css.css" type="text/css" rel="stylesheet">
+    <script src="<?=STATIC_DIR;?>js/jquery-1.9.0.min.js"></script>
+</head>
+<body>
+<div class="bar"></div>
+<div class="main">
+    <div class="nav">
+        <div class="nav_left">
+            <img src="<?=STATIC_DIR;?>images/logo.png" alt="山大校徽">
+        </div>
+        <div class="nav_middle">
+            <div class="nav_middle_top"><p>山东大学</p></div>
+            <div class="nav_middle_bottom"><p>图书馆</p></div>
+        </div>
+        <div class="nav_right">
+            <p>馆&nbsp藏&nbsp图&nbsp书</p>
+            <div class="bbb">
+                <a href="http://localhost/mylib/"><i class="icon  icon-tags">图书馆主页</i></a>
+            </div>
+            <div class="nav_ano">
+                <a href="http://localhost/mylib/login"><i class="icon  icon-tags">用户登录</i></a>
+            </div>
+        </div>
+    </div><!--导航栏nav结束-->
+    <div class="book_one">
+        <table class="ta_ano" id="book_list">
+
+        </table>
+    </div>
+    <div class="ad_one">
+        <p><i class="alt icon-plus-sign-alt">修改书籍信息(空值表示不改变，除id外均为空则代表删除，新增书目请登陆管理员界面)</i></p>
+        <ul class="load_cont">
+            <form action="#" >
+                <li class="l_tit">ID<input type="text" id="bid", name='bid' class="load_input"></li>
+                <li class="l_tit">书名<input type="text" id="bname" name='bname' class="load_input"></li>
+                <li class="l_tit">作者<input type="text" id="bauthor" name='bauthor' class="load_input"></li>
+                <li class="l_tit">类型<input type="text" id="btype" name='btype' class="load_input"></li>
+                <br />
+                <li><div style="padding-left:5px;margin-top:5px;"><input type="button" value="submit" onclick="modify_book()" style="width:100px;" class="button_blue"/></div></li>
+            </form>
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    init();
+    function init() {
+        $.ajax({
+            url: '<?=API;?>booklist/all',
+            type: 'get',
+            success: function (data) {
+                var arr = JSON.parse(data);
+                $('#book_list').html("<tr><th>ID</th><th>书名</th><th>作者</th><th>类型</th><th>是否未借出</th></tr>");
+                for (var i = 0; i < arr.length; i++) {
+                    $('#book_list').append('<tr><td align="center">' + arr[i].id + '</td><td align="center">' + arr[i].name + '</td><td align="center">' + arr[i].author + '</td><td align="center">' + arr[i].type + '</td><td align="center">' + arr[i].exist + '</td></tr>');
+                }
+            }
+        });
+    }
+
+    function modify_book()
+    {
+        if($('#bname').val() == '' && $('#btype').val() == '' && $('#bauthor').val() == ''){
+            $.ajax({
+                url: '<?=API;?>delete/book',
+                type: 'post',
+                data: {
+                    book_id: $('#bid').val()
+                },
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }else {
+            $.ajax({
+                url: '<?=API;?>modify/book',
+                type: 'post',
+                data: {
+                    book_id: $('#bid').val(),
+                    name: $('#bname').val(),
+                    type: $('#btype').val(),
+                    author: $('#bauthor').val()
+                },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+    }
+</script>
+</html>

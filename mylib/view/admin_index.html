@@ -1,0 +1,251 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<?=STATIC_DIR;?>css/font-awesome.css">
+    <title>管理员主页</title>
+    <link rel="stylesheet" href="<?=STATIC_DIR;?>backstage.css">
+    <script type="text/javascript" src="<?=STATIC_DIR;?>js/jquery-1.9.0.min.js"></script>
+
+</head>
+
+<body>
+<div class="head">
+    <div class="logo fl"><a href="#"></a></div>
+    <h3 class="head_text fr">山东大学后台管理系统</h3>
+</div>
+<div class="operation_user clearfix">
+    <div class="link fr">
+        <b class="aaa">欢迎您,<?php echo $_SESSION['name'];?>
+
+        </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localhost/mylib/" class="icon icon_i">首页</a><a href="http://localhost/mylib/books" class="icon icon-asterisk">馆藏图书</a><span></span><a href="#" class="icon icon_n">刷新</a><span></span><a href="" class="icon icon_e">退出</a>
+    </div>
+</div>
+<div class="content clearfix">
+    <div class="main">
+        <!--右侧内容-->
+        <div class="cont">
+            <div class="title">后台管理</div>
+           <div class="ad_one">
+               <p><i class="alt icon-plus-sign-alt"> 添加图书馆书籍</i></p>
+               <ul class="load_cont">
+                   <form action="#" >
+                       <li class="l_tit">书名<input type="text" id="book_name" name='name' class="load_input"></li>
+                       <li class="l_tit">作者<input type="text" id="book_author" name='author' class="load_input"></li>
+                       <li class="l_tit">类型<input type="text" id="book_type" name='type' class="load_input"></li>
+                       <li class="l_tit">备注<input type="text" id="book_remark" name='remark' class="load_input"></li>
+                       <br />
+                       <li><div style="padding-left:5px;margin-top:5px;"><input type="button" onclick="new_book()" value="submit" style="width:100px;" class="button_blue"/></div></li>
+                   </form>
+               </ul>
+           </div>
+            </div>
+        <div class="ad_two">
+            <div class="magic_top">
+                <form name="iForm" class="iFrom_ss" action="#">
+                    <label><i class="icon icon-bell-alt"></i> 修改用户信息(点击选择)</label>
+                    <label><i class="icon icon-magic"></i>姓名</label>
+                    <input type="hidden" id="user_id" value="" name="user_id">
+                    <select class="select_ss" disabled style="width:80px" name="user_name" id="user_name">
+                        <option value="" id="name_slt">未选择</option>
+
+                    </select>
+                    <label><i class="icon icon-magic"></i>性别</label>
+                    <select class="select_cc" name="user_sex" id="user_sex">
+                        <option value="男" >男</option>
+                        <option value="女">女</option>
+                    </select>
+                   <label><i class="icon icon-magic"></i>密码</label>
+               <input type="text" name="user_pass" id="user_pass" class="pass">
+                    <label><i class="icon icon-magic"></i>违规记录</label>
+                    <select class="select_aa" name="record" id="record">
+                        <option value="无" >无</option>
+                        <option value="损坏书籍">损坏书籍</option>
+                        <option value="丢失书籍">丢失书籍</option>
+                        <option value="未按时还书">未按时还书</option>
+                        <option value="逾期未缴费">逾期未缴费</option>
+                        <option value="偷盗书籍">偷盗书籍</option>
+                    </select>
+                    <label><i class="icon icon-twitter"></i><input type="button" value="确认修改" class="but_twi" onclick="modify_profile()"></label>
+
+                </form>
+                </div>
+            <div class="two">
+                <table class="two_ano" id="userlist">
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!--左侧列表-->
+    <div class="menu">
+        <div class="cont">
+            <div id="btnLoginM" class="title"><i class="icon icon-plus-sign-alt"></i> 添加管理员</div>
+            <table class="ta_ano" id="admin_list">
+                <tr>
+                    <th>超级管理员-root</th>
+                </tr>
+                </table>
+        </div>
+    </div>
+
+</div>
+<div id="layer">
+    <div class="demo">
+        <div class="ad_ag">
+        <p><i class="alt_ag">添加管理员</i></p>
+        <ul class="load_cont_ag">
+            <form action="#" >
+                <li class="l_tit_ag">姓名<input type="text"  id='mname' class="load_input_ag"></li>
+                <li class="l_tit_ag">密码<input type="text"  id='mpass' class="load_input_ag"></li>
+                <!--<li class="l_tit">性别<input type="text" id="bauthor" name='bauthor' class="load_input"></li>-->
+                <!--<li class="l_tit">类型<input type="text" id="btype" name='btype' class="load_input"></li>-->
+                <br />
+                <li><div style="padding-left:5px;margin-top:5px;"><input type="button" value="submit" style="width:100px;" class="button_blue_ag" onclick="add_admin()"/></div></li>
+            </form>
+        </ul>
+    </div>
+    <div id="dell">
+        <img src="<?=STATIC_DIR;?>images/close.png">
+    </div>
+    </div>
+</div>
+<script src="<?=STATIC_DIR;?>user_index.js" type="text/javascript"></script>
+</body>
+<script>
+    userlist();
+    get_admin_list();
+
+    function new_book(){
+        $.ajax({
+            url: '<?=API;?>book',
+            type: 'POST',
+            data: {
+                name: $('#book_name').val(),
+                type: $('#book_type').val(),
+                author: $('#book_author').val(),
+                remark: $('#book_remark').val()
+            },
+            success: function(data){
+                if(data == 0){
+                    alert('修改成功');
+                }else{
+                    alert('修改失败');
+                }
+            }
+        });
+    }
+
+    function userlist(){
+        $.ajax({
+            url: '<?=API;?>userlist',
+            type: 'get',
+            success: function(data){
+                console.log(data);
+                var arr = JSON.parse(data);
+                $('#userlist').html('<tr><th>姓名</th><th>性别</th><th>密码</th><th>借书记录</th><th>违规记录</th></tr>');
+                for(var i = 0; i < arr.length; i++){
+                    $('#userlist').append('<tr><td><a href="#" onclick="cg_id('+arr[i].id+',\''+arr[i].username+'\',\''+arr[i].gender+'\',\''+arr[i].password+'\')">'+arr[i].username+'</a></td><td>'+arr[i].gender+'</td><td>'+arr[i].password+'</td><td>'+arr[i].books+'</td><td class="td_over">'+arr[i].exception+'</td></tr>');
+                }
+            }
+        });
+    }
+
+    function get_admin_list()
+    {
+        $.ajax({
+            url: '<?=API;?>admin',
+            type: 'get',
+            success: function(data){
+                var arr = JSON.parse(data);
+                $('#admin_list').html('<tr><th>超级管理员-root</th></tr>');
+                for(var i = 1; i < arr.length; i++){
+                    $('#admin_list').append('<tr><th>管理员-'+arr[i].admin_name+' &nbsp<i class="minus icon-minus-sign" onclick="delete_admin('+arr[i].id+')"></i></th></tr>');
+                }
+            }
+        });
+    }
+
+    function cg_id(id,name,sex,pass)
+    {
+        $('#user_id').val(id);
+        $('#name_slt').val(name);
+        $('#name_slt').html(name);
+        $('#user_name').val(name);
+        $('#user_sex').val(sex);
+        $('#user_pass').val(pass);
+    }
+
+    function modify_profile()
+    {
+        if(!$('#user_id').val()) {
+            alert('尚未选择用户');
+            return;
+        }
+            $.ajax({
+            url: '<?=API;?>modify',
+            type: 'post',
+            data: {
+                user_id: $('#user_id').val(),
+                user_name: $('#user_name').val(),
+                user_sex: $('#user_sex').val(),
+                user_pass: $('#user_pass').val(),
+                record: $('#record').val()
+            },
+            success: function(data){
+                if(data > 0) {
+                    userlist();
+                    alert('成功');
+                }
+                else
+                        alert('失败');
+
+            }
+        });
+    }
+
+    function add_admin()
+    {
+        $.ajax({
+            url: '<?=API;?>admin',
+            type: 'post',
+            data: {
+                admin_name: $('#mname').val(),
+                admin_pass: $('#mpass').val()
+            },
+            success: function(data){
+                if(data > 0) {
+                    alert('成功');
+                    get_admin_list();
+
+                }
+                else
+                    alert('失败 '+data);
+            }
+        });
+    }
+
+    function delete_admin(id)
+    {
+        $.ajax({
+            url: '<?=API;?>delete/admin',
+            type: 'post',
+            data: {
+                admin_id: id
+            },
+            success: function(data){
+                if(data == 1) {
+                    get_admin_list();
+
+                    alert('成功');
+                }
+                else
+                        alert('失败 '+data);
+            }
+        });
+    }
+
+</script>
+</html>
