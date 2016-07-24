@@ -1,0 +1,279 @@
+*
+{
+    margin:0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 微软雅黑;
+
+}
+
+body
+{
+    /*background-color: #ff8e57;*/
+    width: 100%;
+    height: auto;
+    background-color: rgba(231, 231, 231, 0.14);
+}
+.top{
+    width: 100%;
+    height: 55px;
+    background: url("image/bTOP.png") repeat-x;
+}
+
+.picture
+{
+    width: 80%;
+    height: 480px;
+    margin-top: -3px;
+    margin-right: 10%;
+    float: right;
+    /*background-color: aqua;*/
+}
+.picture img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 47px;
+    margin-top: 480px;
+    background: url("image/background.png")repeat-x;
+}
+
+/*.pic*/
+/*{*/
+    /*width: 100%;*/
+    /*height: 47px;*/
+    /**/
+   /**/
+/*}*/
+
+.btn
+{
+    width: 160px;
+    height: 47px;
+    margin-left: 10%;
+    /*background-color: red;*/
+    line-height: 50px;
+    float: left;
+
+}
+.Left
+{
+    background-image: url("image/L1.png");
+    background-size: cover;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    margin-top: 9px;
+    float:left;
+    cursor:pointer;
+}
+.Middle
+{
+    background-image: url("image/pause.png");
+    background-size: cover;
+    position: absolute;
+    width:36px;
+    height: 37px;
+    margin-top: 4px;
+    margin-left:32px ;
+    float:left;
+    cursor:pointer;
+}
+#play_start
+{
+    background-image: url("image/pause.png");
+    background-size: cover;
+    position: absolute;
+    width:36px;
+    height: 37px;
+    margin-top: 4px;
+    margin-left:32px ;
+    float:left;
+    cursor:pointer;
+}
+.Right
+{
+    background-image: url("image/turnR1.png");
+    background-size: cover;
+    position: absolute;
+    width:29px;
+    height: 28px;
+    margin-top: 9px;
+    margin-left:72px ;
+    float:left;
+    cursor:pointer;
+}
+.show
+{
+    width: 35px;
+    height: 36px;
+    background-image: url("image/icon.png");
+    position: relative;
+    float: left;
+    margin-left: 0px;
+    margin-top: 5px;
+    /*background-color: aqua;*/
+    cursor:pointer;
+}
+.show img
+{
+    width: 35px;
+    height: 36px;
+}
+.play
+{
+    width: 570px;
+    height: 100%;
+    margin-left: 15px;
+    float: left;
+    /*background-color: blueviolet;*/
+}
+.play_top
+{
+    width: 570px;
+    height: 28px;
+    color: #959a9b;
+    cursor: pointer;
+    margin-left: 10px;
+    line-height: 28px;
+}
+.song
+{
+   display: block;
+   width: 100px;
+    height: 28px;
+    float: left;
+    /*background-color: #54A9F4;*/
+    overflow: auto;
+}
+.artist
+{
+    display: block;
+    width: 100px;
+    height: 28px;
+    float: left;
+    margin-left: 20px;
+    /*background-color: #e92c48;*/
+    overflow: auto;
+}
+.play_bottom
+{
+    width: 470px;
+    height: 9px;
+    margin-top: 0px;
+    /*background-color: #fa2908;*/
+    background:url("image/playbottom.png") repeat-x;
+    border-radius: 10px;
+
+}
+.going
+{
+    width: 0px;
+    height: 9px;
+    margin-top: 0px;
+    background-color: red;
+    /*background: url("image/red.png")repeat-x;*/
+    border-radius: 10px;
+}
+.time
+{
+    display: block;
+    width: 35px;
+    height: 9px;
+    color: #959a9b;
+   position: absolute;
+    float:left;
+    line-height: 9px;
+    margin-left: 480px;
+}
+.all_time
+{
+    display: block;
+    width: 35px;
+    height: 9px;
+    position: absolute;
+    float:left;
+    line-height: 9px;
+    margin-left: 515px;
+    color: #666666;
+}
+.favorite
+{
+    width: 100px;
+    height: 47px;
+    line-height: 47px;
+    /*background-color: #fa2908;*/
+    float: left;
+}
+.favorite_left
+ {
+     width: 18px;
+     height: 19px;
+     background-image: url("image/store.png");
+    background-size: cover;
+    background-size: cover;//缩小图片
+     position: absolute;
+     margin-top: 14px;
+     cursor:pointer;
+    float: left;
+ }
+.favorite_right
+{
+    width: 18px;
+    height: 19px;
+    background: url("image/share.png");
+    background-size: cover;
+    position: absolute;
+    margin-top: 14px;
+    cursor:pointer;
+    float: left;
+    margin-left: 25px;
+}
+.sound
+{
+    width: 150px;
+    height: 47px;
+    line-height: 47px;
+    /*background-color: #7ec2fa;*/
+    float: left;
+}
+.sound_one
+{
+    width: 19px;
+    height: 20px;
+    background-image: url("image/sound.png");
+    background-size: cover;
+    position: absolute;
+    margin-top: 14px;
+    cursor:pointer;
+    float: left;
+}
+.sound_two
+{
+    width: 19px;
+    height: 20px;
+    background-image: url("image/mode1.png");
+    background-size: cover;
+    position: absolute;
+    margin-top: 14px;
+    cursor:pointer;
+    float: left;
+    margin-left: 25px;
+}
+.sound_three
+{
+    width: 57px;
+    height: 23px;
+    background: url("image/menu.png");
+    background-size: cover;
+    position: absolute;
+    margin-top: 12px;
+    cursor:pointer;
+    float: left;
+    margin-left: 50px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>musicPlayer</title>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
+    <script language="JavaScript" type="text/javascript" src="jquery-2.1.4.js"></script>
+
+</head>
+<body>
+<div class="top"></div><!--top结束-->
+<div class="picture">
+    <img class="lunboing" src="image/P1.jpg" alt="音乐播放器">
+</div>
+
+<div class="wrap">
+    <!--<div class="pic">-->
+        <div class="btn">
+            <div id="Left_bar" class="Left"></div>
+            <div id="play_start" class="Middle"></div>
+            <div id="Right_bar" class="Right"></div>
+        </div><!--btn结束-->
+    <!--</div>&lt;!&ndash;pic结束&ndash;&gt;-->
+    <div id="player_photo" class="show">
+        <img id="player-photo" src="image/poster.png">
+    </div><!--show结束-->
+    <div class="play">
+        <div class="play_top">
+            <span id="player-song-name" class="song">浪费</span>
+            <span id="player-artist-name" class="artist">徐佳莹</span>
+        </div><!--play_top结束-->
+        <div id="play_bottom_bar" class="play_bottom">
+            <span id="player_time" class="time">00:00</span>
+            <span id="player-total-time" class="all_time">/10:00</span>
+            <div id="going_bar" class="going"></div><!--红色进度条-->
+
+        </div><!--play_bottom结束-->
+    </div><!--play结束-->
+    <div class="favorite">
+        <div class="favorite_left"></div>
+        <div class="favorite_right"></div>
+    </div><!--favorite结束-->
+    <div class="sound">
+       <div id="player_mute" class="sound_one"></div>
+        <div id="play_mode" class="sound_two"></div>
+        <div class="sound_three"></div>
+    </div><!--sound结束-->
+</div><!--wrap结束-->
+</body>
+<script src="playlist.js" type="text/javascript" ></script>
+<script src="music.js" type="text/javascript" ></script>
+<script src="picture.js" type="text/javascript" ></script>
+
+</html>
